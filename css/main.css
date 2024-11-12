@@ -1,14 +1,14 @@
 :root {
 	--step-0: clamp(0.875rem, 0.788rem + 0.4348vw, 1.25rem);
 	--step-1: clamp(1.05rem, 0.9312rem + 0.5942vw, 1.5625rem);
-	--step-2: clamp(1.26rem, 1.0993rem + 0.8036vw, 1.9531rem);
+	--step-2: clamp(1rem, 1.0993rem + 0.8036vw, 1.9531rem);
 	--step-6: clamp(0.5rem, 0.3rem + 5vw, 5rem);
 
-	--clr-primary: hsl(260, 5%, 11%);
-	--clr-secondary: hsl(0, 0%, 41%);
+	--clr-primary: hsl(270, 4%, 11%);
+	--clr-secondary: #696969;
 	--clr-accent: hsl(231, 100%, 27%);
 	--clr-accent-secondary: hsl(330, 100%, 71%);
-	--clr-copy-invert: hsl(0, 40%, 98%);
+	--clr-light: hsl(0, 40%, 98%);
 	--space: 1rem;
 	--space-huge: clamp(1rem, 0.9402rem + 8vw, 105rem);
 }
@@ -109,8 +109,8 @@ h6 {
 	src: url("../fonts/CircularStd-Black.otf") format("opentype");
 	font-family: "CircularStd-Medium";
 	src: url("../fonts/CircularStd-Medium.otf") format("opentype");
-	font-family: "CircularStd-Light";
-	src: url("../fonts/CircularStd-Light.otf") format("opentype");
+	/* font-family: "CircularStd-Light";
+	src: url("../fonts/CircularStd-Light.otf") format("opentype"); */
 	font-family: "SimplonMono-Regular";
 	src: url("../fonts/SimplonMono-Regular.otf") format("opentype");
 }
@@ -132,7 +132,6 @@ body {
 
 .light {
 	font-family: "CircularStd-Light", Arial, sans-serif;
-	font-weight: 100;
 }
 
 ul {
@@ -157,6 +156,21 @@ li {
 	scroll-margin-block: 5ex;
 }
 
+:focus {
+	outline: 1px dotted currentColor;
+	outline-offset: 0.2rem;
+}
+
+.sr-only:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
 hr,
 .top-line {
 	border: 0;
@@ -175,6 +189,14 @@ hr,
 
 .fs-xl {
 	font-size: var(--step-6);
+}
+
+.space-m {
+	margin-block-start: calc(var(--space-huge) / 2);
+}
+
+.space-l {
+	margin-block-start: var(--space-huge);
 }
 
 .space-xxl {
@@ -240,6 +262,129 @@ hr,
 
 	place-items: center;
 	gap: var(--space);
+}
+
+/* NAV PROGRESS */
+
+.navbar {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	background-color: var(--clr-primary);
+}
+
+nav > ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space);
+	padding: 1rem;
+}
+
+.nav-links {
+	color: var(--clr-light);
+}
+#progress-bar {
+	--progress: 0;
+	height: 0.3rem;
+	width: var(--progress);
+	background-color: var(--clr-secondary);
+}
+
+.skip-link {
+	display: inline-block;
+	padding: 0.7rem 1rem 0.5rem 1rem;
+	background: var(--clr-accent);
+	color: var(--clr-light);
+	text-decoration: none;
+	font-weight: 700;
+	text-transform: uppercase;
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	z-index: 3;
+}
+
+.skip-link:hover {
+	background: var(--clr-accent-secondary);
+	color: var(--clr-light);
+}
+
+.skip-link:not(:focus) {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
+
+.site-head :focus {
+	outline-color: var(--clr-accent);
+}
+
+.site-head__inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.site-head__brand {
+	display: block;
+	width: 10rem;
+}
+
+.mobile-nav-toggle {
+	display: none;
+}
+
+@media (max-width: 35em) {
+	nav > ul {
+		display: flex;
+		flex-direction: column;
+		padding-inline-start: 3rem;
+		padding-block-start: 5rem;
+	}
+
+	.primary-nav {
+		position: fixed;
+		z-index: 3;
+		inset: 0 0 0 60%;
+		background-color: var(--clr-primary);
+		transform: translateX(100%);
+		transition: transform 250ms ease-out;
+	}
+
+	.primary-nav[data-visible="true"] {
+		transform: translate(0%);
+	}
+
+	.mobile-nav-toggle {
+		display: block;
+		position: absolute;
+		background-color: transparent;
+		background: url(../images/icon-hamburger.svg);
+		background-repeat: no-repeat;
+		width: calc(var(--space) * 2);
+		border: 0;
+		aspect-ratio: 1;
+		top: 1.5rem;
+		right: 1rem;
+		z-index: 4;
+	}
+
+	.mobile-nav-toggle[aria-expanded="true"] {
+		background: url(../images/icon-close.svg);
+		background-repeat: no-repeat;
+	}
+
+	.site-head__inner {
+		padding-block: 0.7rem;
+	}
 }
 
 /* PRESENTATIONAL */
