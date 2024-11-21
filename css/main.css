@@ -154,10 +154,6 @@ ul {
 	margin-block-start: 0;
 	margin-block-end: 0;
 	padding-block: 1.4rem;
-	/* padding-block-end: 2rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center; */
 	list-style: none;
 	padding-inline-start: 0;
 }
@@ -278,13 +274,14 @@ hr,
 	z-index: 2;
 }
 
+details,
 .border-top {
 	border-top: 0.5px solid var(--clr-secondary);
 	margin-top: var(--space);
 }
 
 /* COMPOSITIONAL */
-
+.ethical-grid,
 .header-grid,
 .motivation-grid {
 	display: grid;
@@ -293,11 +290,6 @@ hr,
 
 .header-grid {
 	gap: 1rem;
-}
-
-.half-grid {
-	display: grid;
-	grid-template-columns: ;
 }
 
 .hero-intro {
@@ -451,6 +443,9 @@ nav > ul {
 .logos {
 	height: 50px;
 	width: 150px;
+}
+
+.logos {
 	object-fit: contain;
 	filter: grayscale(0.5);
 	transition: filter 200ms ease, transform 250ms linear;
@@ -559,6 +554,9 @@ header {
 .grid-overlap-container::after {
 	content: "";
 	display: block;
+}
+
+.grid-overlap-container::before {
 	height: 10rem;
 }
 
@@ -567,16 +565,56 @@ header {
 	grid-column: 2 / 3;
 }
 
-.stakeholders {
+.overlap {
 	grid-column: span 2;
 	background-color: var(--clr-primary);
 	color: var(--clr-light);
 }
 
-.stakeholders-grid {
+.overlap-grid {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	padding: var(--space);
+}
+
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	padding: var(--space);
+}
+.divider {
+	grid-column: 5/10;
+	border-right: 1px solid red;
+}
+
+.team-body,
+.team-img {
+	grid-row: 2/3;
+}
+
+.team-body {
+	grid-column: 5/-1;
+	z-index: 1;
+	gap: 1rem;
+}
+
+.team-img {
+	grid-column: 1/6;
+	z-index: 0;
+}
+
+.team-title {
+	grid-column: 2/-1;
+}
+
+.team-img {
+	object-fit: contain;
+	filter: grayscale(0.5);
+	transition: filter 200ms ease, transform 250ms linear;
+}
+
+.team-img:hover {
+	filter: grayscale(0);
 }
 
 .stakeholders-img,
@@ -630,12 +668,10 @@ header {
 }
 
 .arrow {
+	display: grid;
 	place-self: center;
-	width: 4rem;
-	stroke: var(--clr-primary);
-	stroke-miterlimit: 10;
-	stroke-width: 2.5px;
 	transition: transform 250ms;
+	width: 100px;
 }
 
 .arrow:hover {
@@ -644,11 +680,16 @@ header {
 
 .bridges-container {
 	display: grid;
-	grid-template-columns: repeat(
-		auto-fill,
-		minmax(var(--auto-grid-min-size, 24rem), 1fr)
-	);
+	grid-template-columns: repeat(2, 1fr);
 	gap: 2rem;
+}
+
+@media (max-width: 50em) {
+	.bridges-container {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
 }
 
 .bridges-grid {
@@ -665,11 +706,82 @@ header {
 	max-width: 165ch;
 }
 
-.svg--bridges {
-	fill: var(--clr-primary);
-}
-
 .fade {
 	background-color: var(--clr-primary);
 	color: var(--clr-light);
+	padding: 0.2em;
+}
+
+.ethical {
+	grid-column: 2/-1;
+}
+
+.text-indent p + p {
+	text-indent: 2em;
+}
+
+.bridge-icons {
+	object-fit: contain;
+	max-width: 60px;
+	margin-bottom: auto;
+}
+
+details[open] {
+	padding-bottom: 1em;
+}
+summary {
+	padding: 1rem 2em 1rem 0;
+	font-size: var(--fs-md);
+	cursor: pointer;
+}
+
+summary {
+	position: relative;
+}
+summary::marker {
+	content: none;
+}
+summary::before,
+summary::after {
+	content: "";
+}
+summary::before,
+summary::after {
+	width: 1em;
+	height: 0;
+	border-bottom: 0.08em solid;
+	position: absolute;
+	top: calc(50% - 1px);
+	right: 0;
+}
+summary::after {
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
+}
+[open] summary::after {
+	transform: rotate(0deg);
+}
+
+.reel {
+	/* Set up container positioning */
+	display: grid;
+	grid-auto-flow: column;
+	gap: 1rem;
+	/* Enable overflow along our scroll axis */
+	overflow-x: auto;
+	/* Define axis and scroll type, where
+	`mandatory` means any scroll attempt will
+	cause a scroll to the next item */
+	-ms-scroll-snap-type: x mandatory;
+	scroll-snap-type: x mandatory;
+	padding: 0 0 1.5rem;
+	-webkit-overflow-scrolling: touch;
+}
+
+.reel > * {
+	width: min(65ch, 85vw);
+	/* Choose how to align children on scroll */
+	scroll-snap-align: center;
+	/* Prevents scrolling past more than one child */
+	scroll-snap-stop: always;
 }
