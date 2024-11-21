@@ -5,6 +5,7 @@
 	--fs-md: clamp(1.13rem, 1vi + 0.88rem, 1.63rem);
 	--fs-lg: clamp(1.88rem, 2.65vi + 1.21rem, 3.33rem);
 	--fs-xl: clamp(1.5rem, 5.85vi + 0.04rem, 6.25rem);
+	--h2-md: clamp(1.13rem, 0.68vi + 0.95rem, 1.5rem);
 
 	--clr-primary: hsl(270, 4%, 11%);
 	--clr-secondary: #696969;
@@ -139,6 +140,11 @@ body,
 	font-weight: 100;
 }
 
+.h2-md {
+	font-size: var(--h2-md);
+	line-height: 1.2;
+}
+
 .hero-h1 {
 	letter-spacing: -2.5px;
 	line-height: 0.95;
@@ -237,6 +243,10 @@ hr,
 
 .p-md {
 	padding-block: calc(var(--space-huge) / 2);
+}
+
+.p-sm {
+	padding-block: calc(var(--space-huge) / 4);
 }
 
 .wrapper {
@@ -549,7 +559,7 @@ header {
 .grid-overlap-container::after {
 	content: "";
 	display: block;
-	height: var(--space-huge);
+	height: 10rem;
 }
 
 .grid-overlap-container::before {
@@ -625,4 +635,41 @@ header {
 	stroke: var(--clr-primary);
 	stroke-miterlimit: 10;
 	stroke-width: 2.5px;
+	transition: transform 250ms;
+}
+
+.arrow:hover {
+	transform: translateY(10px);
+}
+
+.bridges-container {
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(var(--auto-grid-min-size, 24rem), 1fr)
+	);
+	gap: 2rem;
+}
+
+.bridges-grid {
+	display: flex;
+	gap: 2rem;
+}
+.bridges-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.bridges-group p {
+	max-width: 165ch;
+}
+
+.svg--bridges {
+	fill: var(--clr-primary);
+}
+
+.fade {
+	background-color: var(--clr-primary);
+	color: var(--clr-light);
 }
