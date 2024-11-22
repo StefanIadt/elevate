@@ -13,6 +13,8 @@
 	--clr-accent-secondary: hsl(330, 100%, 71%);
 	--clr-light: hsl(0, 40%, 98%);
 	--clr-bg-light: hsl(0, 0%, 96%);
+	--clr-dark-alt: hsl(195, 10%, 16%);
+	--clr-dark-acc: hsl(195, 14%, 11%);
 	--space: 1rem;
 	--space-huge: clamp(1rem, 0.9402rem + 8vw, 105rem);
 }
@@ -561,13 +563,13 @@ header {
 }
 
 .grid-overlap-container::before {
-	background-color: var(--clr-primary);
+	background-color: var(--clr-dark-alt);
 	grid-column: 2 / 3;
 }
 
 .overlap {
 	grid-column: span 2;
-	background-color: var(--clr-primary);
+	background-color: var(--clr-dark-alt);
 	color: var(--clr-light);
 }
 
@@ -615,6 +617,15 @@ header {
 
 .team-img:hover {
 	filter: grayscale(0);
+}
+
+.team-mark {
+	background-color: var(--clr-primary);
+	color: var(--clr-light);
+}
+
+.team-overlap {
+	background-color: var(--clr-bg-light);
 }
 
 .stakeholders-img,
@@ -763,19 +774,15 @@ summary::after {
 }
 
 .reel {
-	/* Set up container positioning */
 	display: grid;
 	grid-auto-flow: column;
 	gap: 1rem;
-	/* Enable overflow along our scroll axis */
 	overflow-x: auto;
-	/* Define axis and scroll type, where
-	`mandatory` means any scroll attempt will
-	cause a scroll to the next item */
 	-ms-scroll-snap-type: x mandatory;
 	scroll-snap-type: x mandatory;
 	padding: 0 0 1.5rem;
 	-webkit-overflow-scrolling: touch;
+	scrollbar-color: var(--clr-primary) var(--clr-bg-light);
 }
 
 .reel > * {
@@ -784,4 +791,56 @@ summary::after {
 	scroll-snap-align: center;
 	/* Prevents scrolling past more than one child */
 	scroll-snap-stop: always;
+}
+
+.footer--main {
+	background-color: var(--clr-dark-acc);
+}
+
+.team-meet {
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+	background-color: var(--clr-bg-light);
+}
+.decorative-arrow {
+	/* filter: invert(0.8); */
+	object-fit: contain;
+}
+
+.footer-left {
+	display: flex;
+	color: var(--clr-light);
+}
+
+.footer-logo {
+	align-self: flex-start;
+	max-width: 200px;
+}
+
+.footer-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: auto;
+	color: var(--clr-light);
+	gap: 1rem;
+	align-items: center;
+}
+
+.footer-grid > * {
+	border-top: 0.5px solid var(--clr-light); /* Add a border to the top of each grid item */
+	padding-top: 10px; /* Optional: Adds spacing inside the item */
+}
+
+.footer-logos-list {
+	padding: 0;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.no-border {
+	border: 0;
+	margin-top: auto;
 }
