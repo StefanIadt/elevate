@@ -9,6 +9,7 @@
 
 	--clr-primary: hsl(270, 4%, 11%);
 	--clr-secondary: #696969;
+	--clr-neon: hsl(60, 93%, 53%);
 	--clr-accent: hsl(231, 100%, 27%);
 	--clr-accent-secondary: hsl(330, 100%, 71%);
 	--clr-light: hsl(0, 40%, 98%);
@@ -197,6 +198,22 @@ hr,
 	height: 0px;
 }
 
+.back-to-top {
+	position: fixed;
+	bottom: 3rem;
+	right: 3rem;
+	width: 3rem;
+	height: 3rem;
+	background-color: var(--clr-neon);
+	border-radius: 50%;
+	transition: transform 250ms;
+}
+
+.back-to-top:hover {
+	transform: translateY(-10px);
+	cursor: pointer;
+}
+
 /* UTILITY */
 
 .fs-md {
@@ -315,7 +332,6 @@ details,
 	top: 0;
 	z-index: 1;
 	background-color: var(--clr-primary);
-	/* background-color: transparent; */
 }
 
 nav > ul {
@@ -331,7 +347,7 @@ nav > ul {
 	--progress: 0;
 	height: 0.3rem;
 	width: var(--progress);
-	background-color: var(--clr-secondary);
+	background-color: var(--clr-neon);
 }
 
 .skip-link {
@@ -586,7 +602,6 @@ header {
 }
 .divider {
 	grid-column: 5/10;
-	border-right: 1px solid red;
 }
 
 .team-body,
